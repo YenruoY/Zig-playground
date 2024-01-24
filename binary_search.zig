@@ -6,13 +6,14 @@ const reader = stdin.reader();
 pub fn main() !void {
     print("Hello world!\n", .{});
 
-    var array = [_]u32{0} ** 15;
+    // var array = [_]u32{0} ** 15;
+    var array = [_]u32{gen_rand()} ** 15;
 
     // populating array with random generated numbers
-    for (&array) |*elm| {
-        var tmp = try gen_rand();
-        elm.* = tmp;
-    }
+    // for (&array) |*elm| {
+    //    var tmp = try gen_rand();
+    //    elm.* = tmp;
+    //}
 
     // printing array elements
     print("Random Array : ", .{});
@@ -32,14 +33,15 @@ pub fn main() !void {
     print("\n", .{});
 
     // generating a random number in the range
-    const to_find: u32 = try gen_rand();
+    // const to_find: u32 = try gen_rand();
+    const to_find: u32 = gen_rand();
     print("Finding the number : {}\n", .{to_find});
 
     // calling binary search function
     binary_search(&array, to_find);
 }
 
-fn gen_rand() !u32 {
+fn gen_rand() u32 {
     // generates seed by using nanoTimestamp within range 10000
     const nanoTime: u32 = @intCast(@mod(std.time.nanoTimestamp(), 10000));
 
